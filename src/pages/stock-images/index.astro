@@ -1,0 +1,38 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import StockImageCard from "../../components/StockImageCard.astro";
+import { stockImages } from "../../data/stockImages";
+
+const mixedImages = [...stockImages].sort((a, b) => {
+  const order = ["9:16", "1:1", "16:9", "3:4", "4:3"];
+  return order.indexOf(a.ratio) - order.indexOf(b.ratio);
+});
+---
+
+<MainLayout
+  title="Free Stock Images for Creators"
+  description="Download aesthetic stock images for editing, thumbnails, content creation and social media."
+  canonical="https://switchtooeasy.netlify.app/stock-images"
+>
+  <section class="px-4 py-14 md:px-5 md:py-20">
+    <div class="mx-auto max-w-7xl">
+      <p class="text-sm font-bold uppercase tracking-widest text-purple-300">
+        Stock Images
+      </p>
+
+      <h1 class="mt-4 text-4xl font-black md:text-6xl">
+        Aesthetic stock images for edits.
+      </h1>
+
+      <p class="mt-5 max-w-2xl text-white/60">
+        Explore stock images for thumbnails, wallpapers, reels covers and creative designs.
+      </p>
+
+      <div class="mt-12 columns-1 gap-5 sm:columns-2 lg:columns-3 xl:columns-4">
+        {mixedImages.map((item) => (
+          <StockImageCard item={item} />
+        ))}
+      </div>
+    </div>
+  </section>
+</MainLayout>

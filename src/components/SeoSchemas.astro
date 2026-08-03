@@ -1,0 +1,15 @@
+---
+type JsonSchema = Record<string, unknown>;
+
+interface Props {
+  schemas?: JsonSchema[];
+}
+
+const { schemas = [] } = Astro.props as Props;
+
+const schemaStrings = schemas.map((schema) => JSON.stringify(schema));
+---
+
+{schemaStrings.map((schemaString) => (
+  <script type="application/ld+json" set:html={schemaString}></script>
+))}

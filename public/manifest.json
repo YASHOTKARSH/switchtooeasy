@@ -1,0 +1,15 @@
+{
+  "name": "SwitchTooEasy",
+  "short_name": "SwitchTooEasy",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#7c3aed",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

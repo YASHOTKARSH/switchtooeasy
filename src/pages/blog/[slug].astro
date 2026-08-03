@@ -1,0 +1,54 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { blogs } from "../../data/blogs";
+
+export function getStaticPaths() {
+  return blogs.map((blog) => ({
+    params: { slug: blog.slug },
+    props: { blog },
+  }));
+}
+
+const { blog } = Astro.props;
+
+const readingTime = Math.max(
+  1,
+  Math.ceil(blog.content.replace(/<[^>]*>/g, "").split(" ").length / 200)
+);
+---
+
+<MainLayout
+  title={blog.metaTitle}
+  description={blog.metaDescription}
+  canonical={`https://switchtooeasy.netlify.app/blog/${blog.slug}`}
+>
+  <article class="px-5 py-12">
+    <div class="mx-auto max-w-4xl">
+
+      <img
+        src={blog.image}
+        alt={blog.title}
+        class="aspect-video w-full rounded-[2rem] object-cover"
+      />
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <span class="rounded-full bg-purple-500/20 px-4 py-2 text-sm font-semibold text-purple-200">
+          {blog.category}
+        </span>
+
+        <span class="rounded-full border border-white/10 px-4 py-2 text-sm text-white/60">
+          {readingTime} min read
+        </span>
+      </div>
+
+      <h1 class="mt-6 text-4xl font-black leading-tight md:text-6xl">
+        {blog.title}
+      </h1>
+
+      <div
+        class="blog-content mt-10"
+        set:html={blog.content}
+      />
+    </div>
+  </article>
+</MainLayout>

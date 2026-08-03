@@ -1,0 +1,183 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import StructuredData from "../components/StructuredData.astro";
+---
+
+<MainLayout
+  title="Download SwitchTooEasy App - Install VN Templates App | SwitchTooEasy"
+  description="Install SwitchTooEasy as a native mobile and desktop app for instant access to viral VN templates and AI prompts."
+  canonical="https://switchtooeasy.netlify.app/download"
+>
+  <StructuredData
+    type="WebPage"
+    title="Download SwitchTooEasy App"
+    description="Install SwitchTooEasy as a native PWA app."
+    url="https://switchtooeasy.netlify.app/download"
+  />
+
+  <main id="main-content" class="relative overflow-hidden px-5 py-20 pb-32 lg:py-28">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,#7c3aed33,transparent_35%),radial-gradient(circle_at_bottom_right,#ec489933,transparent_30%)]" aria-hidden="true"></div>
+
+    <div class="relative mx-auto max-w-4xl text-center">
+      <span class="inline-flex items-center gap-2 rounded-full border border-purple-400/30 bg-purple-400/10 px-4 py-2 text-sm font-medium text-purple-200 backdrop-blur-md">
+        <span class="flex h-2 w-2 rounded-full bg-purple-400 animate-pulse"></span>
+        Progressive Web App (PWA)
+      </span>
+
+      <h1 class="mt-6 text-4xl font-black tracking-tight text-white sm:text-6xl">
+        Get SwitchTooEasy as an App.
+      </h1>
+
+      <p class="mt-6 text-base leading-relaxed text-white/70 sm:text-lg max-w-2xl mx-auto">
+        Install SwitchTooEasy directly on your mobile home screen. Enjoy lightning-fast template browsing, offline support, and 1-click access.
+      </p>
+
+      <!-- Install Action Box -->
+      <div class="mt-10 rounded-[2.5rem] border border-white/15 bg-white/5 p-8 sm:p-12 backdrop-blur-xl shadow-2xl shadow-purple-950/30 max-w-xl mx-auto">
+        <div class="flex flex-col items-center">
+          <!-- App Icon Mockup -->
+          <div class="flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-purple-600 to-pink-600 overflow-hidden text-white shadow-lg shadow-purple-600/40 p-2">
+            <img src="/favicon.png" alt="App Icon" class="h-full w-full object-contain" />
+          </div>
+          
+          <h2 class="mt-5 text-2xl font-bold text-white">SwitchTooEasy Creator Hub</h2>
+          <p class="mt-2 text-xs text-white/50 uppercase tracking-widest">Version 2.0 &bull; Web App</p>
+
+          <!-- Button Hamesha Flex Rahega (Hidden nahi) -->
+          <button
+            type="button"
+            id="pwa-install-btn"
+            class="mt-8 flex w-full items-center justify-center rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 text-center text-base font-bold text-white shadow-lg shadow-purple-600/30 transition-all duration-300 hover:opacity-95 hover:scale-105 active:scale-95 cursor-pointer"
+          >
+            <span id="btn-icon" class="mr-2">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            </span>
+            <span id="btn-text">Install App Now</span>
+          </button>
+
+          <!-- Fallback Manual Instructions (Hidden by default) -->
+          <div id="manual-install-instructions" class="mt-8 hidden text-left w-full rounded-2xl border border-white/10 bg-black/40 p-5 space-y-3 transition-all duration-300">
+            <p class="text-xs font-bold uppercase tracking-wider text-purple-400">Manual Installation Guide:</p>
+            <ul class="text-xs text-white/70 space-y-2 list-disc pl-4">
+              <li><strong class="text-white">Android:</strong> Tap browser menu (3 dots) and select "Install app".</li>
+              <li><strong class="text-white">iOS:</strong> Tap Share button and select "Add to Home Screen".</li>
+              <li><strong class="text-white">Desktop:</strong> Click the install icon in your address bar.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <a href="/" class="inline-flex items-center text-sm font-semibold text-purple-400 transition-colors hover:text-purple-300">
+          &larr; Back to Home
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- iOS Specific Instruction Modal (Popup) -->
+  <div id="ios-instruction-modal" class="fixed inset-0 z-[60] hidden items-end sm:items-center justify-center bg-black/80 backdrop-blur-sm transition-opacity opacity-0 pointer-events-none p-4">
+    <div class="relative w-full max-w-sm rounded-[2rem] border border-white/10 bg-neutral-900 p-6 text-center shadow-2xl transform translate-y-full transition-transform duration-300" id="ios-modal-content">
+      
+      <button type="button" id="close-ios-modal" class="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white/70 hover:bg-white/20 hover:text-white cursor-pointer">
+        ✕
+      </button>
+
+      <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white/5 text-purple-400 mb-4">
+        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+      </div>
+
+      <h3 class="text-xl font-bold text-white">Install on iPhone</h3>
+      <p class="mt-2 text-sm text-white/70">Apple requires a quick manual step to install apps. It takes 5 seconds!</p>
+      
+      <div class="mt-6 space-y-4 text-left">
+        <div class="flex items-center gap-4 rounded-xl bg-white/5 p-3">
+          <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-purple-500 text-sm font-bold text-white">1</span>
+          <p class="text-sm text-white/80">Tap the <strong class="text-white">Share</strong> icon at the bottom of Safari.</p>
+        </div>
+        <div class="flex items-center gap-4 rounded-xl bg-white/5 p-3">
+          <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-purple-500 text-sm font-bold text-white">2</span>
+          <p class="text-sm text-white/80">Scroll down and tap <strong class="text-white">"Add to Home Screen"</strong>.</p>
+        </div>
+      </div>
+      
+      <p class="mt-6 text-xs text-white/50 animate-bounce">↓ Look at the bottom of your screen ↓</p>
+    </div>
+  </div>
+</MainLayout>
+
+<script>
+  let deferredPrompt: any = null;
+  const installBtn = document.getElementById("pwa-install-btn") as HTMLButtonElement;
+  const btnText = document.getElementById("btn-text") as HTMLSpanElement;
+  const manualGuide = document.getElementById("manual-install-instructions") as HTMLDivElement;
+  
+  const iosModal = document.getElementById("ios-instruction-modal") as HTMLDivElement;
+  const iosModalContent = document.getElementById("ios-modal-content") as HTMLDivElement;
+  const closeIosBtn = document.getElementById("close-ios-modal") as HTMLButtonElement;
+
+  // Device Detection
+  const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || (navigator as any).standalone;
+
+  // Agar app pehle se installed hai
+  if (isStandalone) {
+    if (btnText) btnText.innerText = "App is Installed";
+    if (installBtn) {
+      installBtn.classList.add("opacity-50", "cursor-not-allowed");
+      installBtn.disabled = true;
+    }
+  } else if (isIos && btnText) {
+    // Agar iPhone hai
+    btnText.innerText = "Install on iPhone";
+  }
+
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+  });
+
+  installBtn?.addEventListener("click", async () => {
+    if (isStandalone) return;
+
+    if (deferredPrompt) {
+      // ANDROID / CHROME
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === "accepted") {
+        installBtn.classList.add("opacity-50", "cursor-not-allowed");
+        btnText.innerText = "Installed";
+        installBtn.disabled = true;
+      }
+      deferredPrompt = null;
+    } else if (isIos) {
+      // iOS / IPHONE
+      iosModal.classList.remove("hidden", "opacity-0", "pointer-events-none");
+      setTimeout(() => {
+        iosModalContent.classList.remove("translate-y-full");
+      }, 10);
+    } else {
+      // DESKTOP / OTHERS
+      manualGuide.classList.remove("hidden");
+      manualGuide.classList.add("ring-2", "ring-purple-500", "scale-105");
+      setTimeout(() => {
+        manualGuide.classList.remove("ring-2", "ring-purple-500", "scale-105");
+      }, 1500);
+    }
+  });
+
+  closeIosBtn?.addEventListener("click", () => {
+    iosModalContent.classList.add("translate-y-full");
+    setTimeout(() => {
+      iosModal.classList.add("hidden", "opacity-0", "pointer-events-none");
+    }, 300);
+  });
+
+  window.addEventListener("appinstalled", () => {
+    if (installBtn) {
+      installBtn.classList.add("opacity-50", "cursor-not-allowed");
+      installBtn.disabled = true;
+    }
+    if (btnText) btnText.innerText = "App Installed";
+  });
+</script>

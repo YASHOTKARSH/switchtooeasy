@@ -1,0 +1,39 @@
+---
+const { item } = Astro.props;
+---
+
+<article class="group mb-5 block break-inside-avoid overflow-hidden rounded-[1.8rem] border border-white/10 bg-white/[0.03]">
+  <a href={`/stock-videos/${item.slug}`} class="block">
+    <div class="relative overflow-hidden bg-black">
+      <div class="skeleton pointer-events-none absolute inset-0 z-10 animate-pulse bg-white/10"></div>
+
+      <video
+        src={item.video}
+        poster={item.thumbnail}
+        muted
+        autoplay
+        loop
+        playsinline
+        preload="metadata"
+        onloadeddata="this.parentElement.querySelector('.skeleton')?.classList.add('opacity-0')"
+        class="h-auto w-full object-cover transition duration-700 group-hover:scale-105"
+      ></video>
+
+      <div class="absolute inset-0 bg-black/0 transition group-hover:bg-black/20"></div>
+
+      <a
+        href={item.downloadUrl}
+        download
+        class="absolute bottom-4 right-4 z-30 rounded-full bg-purple-500 px-4 py-2 text-xs font-bold text-white opacity-0 transition group-hover:opacity-100"
+      >
+        Download
+      </a>
+    </div>
+  </a>
+</article>
+
+<style>
+  .skeleton {
+    transition: opacity 0.45s ease;
+  }
+</style>

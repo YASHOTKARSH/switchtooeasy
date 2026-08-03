@@ -1,0 +1,150 @@
+---
+---
+<header
+  class="sticky top-0 z-50 border-b border-white/10 bg-black/80 backdrop-blur-xl"
+>
+  <nav
+    class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-5 md:py-4"
+  >
+    <a href="/" class="flex items-center" aria-label="SwitchTooEasy Home">
+      <img
+        src="/logo.png"
+        alt="SwitchTooEasy Logo"
+        class="h-11 w-auto object-contain md:h-14"
+      />
+    </a>
+
+    <!-- Desktop Nav Links -->
+    <div
+      class="hidden items-center gap-6 text-sm font-semibold text-white/80 md:flex"
+    >
+      <a href="/download" class="transition hover:text-purple-300">Download App</a>
+      <a href="/templates" class="transition hover:text-purple-300">Templates</a>
+      <a href="/prompts" class="transition hover:text-purple-300">Prompts</a>
+      <a href="/stock-images" class="transition hover:text-purple-300">Stock Images</a>
+      <a href="/blog" class="transition hover:text-purple-300">Blog</a>
+      <a href="/about" class="transition hover:text-purple-300">About</a>
+      <a href="/contact" class="transition hover:text-purple-300">Contact</a>
+    </div>
+
+    <a
+      href="/templates"
+      class="hidden rounded-full bg-purple-500 px-6 py-3 text-sm font-bold text-white transition hover:bg-purple-400 md:inline-block"
+    >
+      Explore
+    </a>
+
+    <!-- Mobile Menu Hamburger Button -->
+    <button
+      id="menuBtn"
+      type="button"
+      class="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white md:hidden"
+      aria-label="Open menu"
+    >
+      <span class="text-2xl leading-none">☰</span>
+    </button>
+  </nav>
+
+  <!-- Mobile Dropdown Menu Drawer -->
+  <div
+    id="mobileMenu"
+    class="hidden border-t border-white/10 bg-black/95 px-4 pb-6 pt-3 backdrop-blur-2xl md:hidden"
+  >
+    <div class="grid gap-2">
+      <a
+        href="/download"
+        class="rounded-2xl px-4 py-3 font-semibold text-purple-300 hover:bg-white/10 flex items-center justify-between"
+      >
+        <span>📱 Download App</span>
+        <span class="text-xs bg-purple-500/25 px-2 py-0.5 rounded-full">New</span>
+      </a>
+      <a
+        href="/templates"
+        class="rounded-2xl px-4 py-3 font-semibold text-white/80 hover:bg-white/10"
+      >
+        Templates
+      </a>
+      <a
+        href="/prompts"
+        class="rounded-2xl px-4 py-3 font-semibold text-white/80 hover:bg-white/10"
+      >
+        Prompts
+      </a>
+      <a
+        href="/stock-videos"
+        class="rounded-2xl px-4 py-3 font-semibold text-white/80 hover:bg-white/10"
+      >
+        Stock Videos
+      </a>
+      <a
+        href="/stock-images"
+        class="rounded-2xl px-4 py-3 font-semibold text-white/80 hover:bg-white/10"
+      >
+        Stock Images
+      </a>
+      <a
+        href="/blog"
+        class="rounded-2xl px-4 py-3 font-semibold text-white/80 hover:bg-white/10"
+      >
+        Blog
+      </a>
+      <a
+        href="/about"
+        class="rounded-2xl px-4 py-3 font-semibold text-white/80 hover:bg-white/10"
+      >
+        About
+      </a>
+      <a
+        href="/contact"
+        class="rounded-2xl px-4 py-3 font-semibold text-white/80 hover:bg-white/10"
+      >
+        Contact
+      </a>
+
+      <a
+        href="/stock-videos"
+        class="mt-2 rounded-full bg-purple-500 px-5 py-3 text-center font-bold text-white shadow-lg shadow-purple-500/30"
+      >
+        Explore Assets
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuBtn?.addEventListener("click", () => {
+      mobileMenu?.classList.toggle("hidden");
+    });
+  </script>
+</header>
+
+<!-- MOBILE APP BOTTOM DOCK NAVIGATION (App-like Experience) -->
+<nav class="fixed inset-x-0 bottom-0 z-40 bg-black/90 backdrop-blur-xl border-t border-white/10 px-4 py-2 md:hidden shadow-2xl" aria-label="Mobile Bottom App Bar">
+  <div class="mx-auto flex max-w-md items-center justify-around">
+    <!-- Home -->
+    <a href="/" class="flex flex-col items-center justify-center py-1 px-3 text-white/60 hover:text-purple-400 transition-colors">
+      <svg class="h-5 w-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+      <span class="text-[10px] font-medium">Home</span>
+    </a>
+
+    <!-- Templates -->
+    <a href="/templates" class="flex flex-col items-center justify-center py-1 px-3 text-white/60 hover:text-purple-400 transition-colors">
+      <svg class="h-5 w-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+      <span class="text-[10px] font-medium">Templates</span>
+    </a>
+
+    <!-- Prompts -->
+    <a href="/prompts" class="flex flex-col items-center justify-center py-1 px-3 text-white/60 hover:text-purple-400 transition-colors">
+      <svg class="h-5 w-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+      <span class="text-[10px] font-medium">Prompts</span>
+    </a>
+
+    <!-- Download App Shortcut -->
+    <a href="/download" class="flex flex-col items-center justify-center py-1 px-3 text-purple-400 hover:text-purple-300 transition-colors">
+      <svg class="h-5 w-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+      <span class="text-[10px] font-bold">Install</span>
+    </a>
+  </div>
+</nav>

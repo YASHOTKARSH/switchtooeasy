@@ -1,0 +1,64 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+const reels = [
+  {
+    title: "Cinematic Love Edit Demo",
+    category: "Love",
+    video: "/videos/love-template-demo.mp4",
+  },
+  {
+    title: "Attitude Beat Sync Demo",
+    category: "Attitude",
+    video: "/videos/attitude-template-demo.mp4",
+  },
+  {
+    title: "Birthday Memories Demo",
+    category: "Birthday",
+    video: "/videos/birthday-template-demo.mp4",
+  },
+];
+---
+
+<MainLayout
+  title="Reels Demo Videos - VN Template Previews | SwitchTooEasy"
+  description="Watch reels-style demo videos for VN templates, AI edits and viral short-form content ideas before using them."
+  canonical="https://switchtooeasy.netlify.app/reels"
+>
+  <section class="px-5 py-20">
+    <div class="mx-auto max-w-7xl">
+      <p class="text-sm font-bold uppercase tracking-widest text-purple-300">
+        Reels Demo
+      </p>
+
+      <h1 class="mt-4 max-w-3xl text-4xl font-black md:text-6xl">
+        Watch demo videos before using templates.
+      </h1>
+
+      <p class="mt-5 max-w-2xl text-white/60">
+        Preview VN templates in reels format and choose the right edit style for your next viral video.
+      </p>
+
+      <div class="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+        {reels.map((reel) => (
+          <article class="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5">
+            <video
+  src={reel.video}
+  muted
+  loop
+  autoplay
+  playsinline
+  preload="metadata"
+  class="aspect-[9/16] w-full bg-black object-cover"
+></video>
+
+            <div class="p-5">
+              <p class="text-sm text-purple-300">{reel.category}</p>
+              <h2 class="mt-2 text-xl font-bold">{reel.title}</h2>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</MainLayout>

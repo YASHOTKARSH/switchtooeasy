@@ -1,0 +1,76 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import PromptCard from "../../components/PromptCard.astro";
+import { prompts } from "../../data/prompts";
+
+const categories = ["All", ...new Set(prompts.map((item) => item.category))];
+---
+
+<MainLayout
+  title="AI Image Prompts - Viral Photo Editing Prompts | SwitchTooEasy"
+  description="Copy viral AI image prompts for cinematic portraits, couple photos, attitude edits, royal portraits and Instagram-style photo generation."
+  canonical="https://switchtooeasy.netlify.app/prompts"
+>
+  <section class="px-5 py-20">
+    <div class="mx-auto max-w-7xl">
+      <p class="text-sm font-bold uppercase tracking-widest text-pink-300">
+        AI Image Prompts
+      </p>
+
+      <h1 class="mt-4 max-w-3xl text-4xl font-black md:text-6xl">
+        Copy ready-made AI prompts for viral image generation.
+      </h1>
+
+      <p class="mt-5 max-w-2xl text-white/60">
+        Explore realistic AI image prompts for cinematic portraits, couple edits,
+        Instagram profile photos, royal Indian looks and trending social media images.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        {categories.map((category) => (
+          <button
+            class="prompt-category-btn rounded-full border border-white/10 px-5 py-2 text-sm font-bold text-white/70 hover:bg-pink-500 hover:text-white"
+            data-category={category}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+
+      <div class="mt-12 grid gap-7 md:grid-cols-2 lg:grid-cols-3">
+        {prompts.map((prompt) => (
+          <div class="prompt-item" data-category={prompt.category}>
+            <PromptCard prompt={prompt} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const buttons = document.querySelectorAll(".prompt-category-btn");
+    const items = document.querySelectorAll(".prompt-item");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const selectedCategory = button.getAttribute("data-category");
+
+        buttons.forEach((btn) => {
+          btn.classList.remove("bg-pink-500", "text-white");
+        });
+
+        button.classList.add("bg-pink-500", "text-white");
+
+        items.forEach((item) => {
+          const itemCategory = item.getAttribute("data-category");
+
+          if (selectedCategory === "All" || selectedCategory === itemCategory) {
+            item.classList.remove("hidden");
+          } else {
+            item.classList.add("hidden");
+          }
+        });
+      });
+    });
+  </script>
+</MainLayout>

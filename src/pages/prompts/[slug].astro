@@ -1,0 +1,94 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import PromptCopyButton from "../../components/PromptCopyButton.astro";
+import { prompts } from "../../data/prompts";
+import StructuredData from "../../components/StructuredData.astro";
+
+export function getStaticPaths() {
+  return prompts.map((prompt) => ({
+    params: { slug: prompt.slug },
+    props: { prompt },
+  }));
+}
+
+const { prompt } = Astro.props;
+---
+
+<MainLayout
+  title={`${prompt.title} - Copy AI Image Prompt | SwitchTooEasy`}
+  description={prompt.shortDescription}
+  canonical={`https://switchtooeasy.netlify.app/prompts/${prompt.slug}`}
+>
+<StructuredData
+  type="CreativeWork"
+  title={prompt.title}
+  description={prompt.shortDescription}
+  url={`https://switchtooeasy.netlify.app/prompts/${prompt.slug}`}
+  image={`https://switchtooeasy.netlify.app${prompt.image}`}
+/>
+  <section class="px-5 py-16">
+    <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2">
+      <div>
+        <img
+          src={prompt.image}
+          alt={prompt.title}
+          class="w-full rounded-3xl border border-white/10 object-cover"
+        />
+      </div>
+
+      <div>
+        <p class="inline-block rounded-full bg-pink-500/20 px-4 py-2 text-sm font-semibold text-pink-200">
+          {prompt.category} AI Prompt
+        </p>
+
+        <h1 class="mt-5 text-4xl font-black leading-tight md:text-6xl">
+          {prompt.title}
+        </h1>
+
+        <p class="mt-6 text-lg leading-8 text-white/70">
+          {prompt.shortDescription}
+        </p>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          {prompt.tags.map((tag) => (
+            <span class="rounded-full border border-white/10 px-4 py-2 text-sm text-white/70">
+              #{tag}
+            </span>
+          ))}
+        </div>
+
+        <div class="mt-9 rounded-3xl border border-white/10 bg-white/5 p-6">
+          <h2 class="text-xl font-bold">Prompt</h2>
+          <p class="mt-4 whitespace-pre-line leading-8 text-white/70">
+            {prompt.prompt}
+          </p>
+        </div>
+
+        <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+          <PromptCopyButton promptText={prompt.prompt} />
+
+          <a
+            href="/prompts"
+            class="rounded-full border border-white/15 px-8 py-4 text-center font-bold hover:bg-white/10"
+          >
+            Back to Prompts
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-5 pb-20">
+    <div class="mx-auto max-w-4xl rounded-3xl border border-white/10 bg-white/5 p-8">
+      <h2 class="text-3xl font-bold">How to use this AI image prompt?</h2>
+
+      <ol class="mt-6 list-decimal space-y-3 pl-5 text-white/70">
+        <li>Upload your reference image in your AI image tool.</li>
+        <li>Copy this prompt and paste it with the uploaded image.</li>
+        <li>Keep face identity and natural details enabled where available.</li>
+        <li>Generate multiple versions and select the best one.</li>
+        <li>Use the final image for reels, profile posts or creative edits.</li>
+      </ol>
+    </div>
+  </section>
+</MainLayout>

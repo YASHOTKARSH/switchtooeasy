@@ -1,0 +1,378 @@
+<!-- ---
+import MainLayout from "../../layouts/MainLayout.astro";
+import TemplateCard from "../../components/TemplateCard.astro";
+import { templates } from "../../data/templates";
+
+const categories = ["All", ...new Set(templates.map((item) => item.category))];
+---
+
+<MainLayout
+  title="VN Templates Download - Viral Editing Templates | SwitchTooEasy"
+  description="Browse viral VN templates for love edits, attitude reels, birthday videos, cinematic reels and trending Instagram edits."
+  canonical="https://switchtooeasy.netlify.app/templates"
+>
+  <section class="px-5 py-20">
+    <div class="mx-auto max-w-7xl">
+      <p class="text-sm font-bold uppercase tracking-widest text-purple-300">
+        VN Templates
+      </p>
+
+      <h1 class="mt-4 max-w-3xl text-4xl font-black md:text-6xl">
+        Ready-made VN templates for viral reels and easy editing.
+      </h1>
+
+      <p class="mt-5 max-w-2xl text-white/60">
+        Explore easy-to-use VN templates for Instagram reels, status videos,
+        love edits, birthday videos and cinematic short-form content.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        {categories.map((category) => (
+          <button
+            class="category-btn rounded-full border border-white/10 px-5 py-2 text-sm font-bold text-white/70 hover:bg-purple-500 hover:text-white"
+            data-category={category}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {templates.map((template) => (
+          <div class="template-item" data-category={template.category}>
+            <TemplateCard template={template} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const buttons = document.querySelectorAll(".category-btn");
+    const items = document.querySelectorAll(".template-item");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const selectedCategory = button.getAttribute("data-category");
+
+        buttons.forEach((btn) => {
+          btn.classList.remove("bg-purple-500", "text-white");
+        });
+
+        button.classList.add("bg-purple-500", "text-white");
+
+        items.forEach((item) => {
+          const itemCategory = item.getAttribute("data-category");
+
+          if (selectedCategory === "All" || selectedCategory === itemCategory) {
+            item.classList.remove("hidden");
+          } else {
+            item.classList.add("hidden");
+          }
+        });
+      });
+    });
+  </script>
+</MainLayout> -->
+
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import TemplateCard from "../../components/TemplateCard.astro";
+import { templates } from "../../data/templates";
+
+const categories = ["All", ...new Set(templates.map((item) => item.category))];
+const totalTemplates = templates.length;
+const totalCategories = categories.length - 1;
+---
+
+<MainLayout
+  title="VN Templates Download - Viral Editing Templates | SwitchTooEasy"
+  description="Browse viral VN templates for love edits, attitude reels, birthday videos, cinematic reels and trending Instagram edits."
+  canonical="https://switchtooeasy.netlify.app/templates"
+>
+  <main id="main-content" class="relative overflow-hidden pb-24">
+    <!-- SECTION 1: Premium Hero -->
+    <header class="px-5 pt-16 pb-10">
+      <div class="mx-auto max-w-7xl">
+        <div class="inline-flex items-center rounded-full bg-purple-500/15 px-4 py-1.5 text-xs font-semibold tracking-wide text-purple-300 ring-1 ring-inset ring-purple-500/30">
+          {totalTemplates}+ Free VN Templates
+        </div>
+
+        <h1 class="mt-6 max-w-4xl text-4xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl">
+          Ready-made VN templates for viral reels and easy editing.
+        </h1>
+
+        <p class="mt-6 max-w-2xl text-base leading-relaxed text-white/60 sm:text-lg">
+          Explore trending VN templates for Instagram reels, YouTube shorts, and cinematic short-form content. Download instantly and create viral edits with a single click.
+        </p>
+
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <a
+            href="#templates-grid"
+            class="inline-flex items-center justify-center rounded-full bg-purple-600 px-8 py-4 text-center text-base font-semibold text-white shadow-lg shadow-purple-600/30 transition-all duration-200 hover:bg-purple-500 hover:shadow-purple-500/40 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black"
+          >
+            Explore Templates
+          </a>
+          <a
+            href="/templates"
+            class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-8 py-4 text-center text-base font-semibold text-white transition-all duration-200 hover:bg-white/10 hover:border-white/25 focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2 focus:ring-offset-black"
+          >
+            Trending Edits
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- SECTION 2: Quick Statistics -->
+    <section class="px-5 py-6" aria-label="Platform Statistics">
+      <div class="mx-auto grid max-w-7xl grid-cols-2 gap-4 sm:grid-cols-4">
+        <div class="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+          <span class="text-xs font-semibold uppercase tracking-wider text-white/50">Total Templates</span>
+          <p class="mt-2 text-2xl font-extrabold text-white sm:text-3xl">{totalTemplates}+</p>
+        </div>
+        <div class="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+          <span class="text-xs font-semibold uppercase tracking-wider text-white/50">Categories</span>
+          <p class="mt-2 text-2xl font-extrabold text-white sm:text-3xl">{totalCategories}</p>
+        </div>
+        <div class="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+          <span class="text-xs font-semibold uppercase tracking-wider text-white/50">Free Access</span>
+          <p class="mt-2 text-2xl font-extrabold text-white sm:text-3xl">100% Free</p>
+        </div>
+        <div class="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+          <span class="text-xs font-semibold uppercase tracking-wider text-white/50">Compatibility</span>
+          <p class="mt-2 text-2xl font-extrabold text-white sm:text-3xl">VN App</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STICKY FILTER BAR CONTAINER (Search, Categories & Sorting) -->
+    <div id="filter-sticky-wrapper" class="sticky top-0 z-40 bg-black/80 backdrop-blur-xl border-y border-white/10 py-4 px-5 transition-all">
+      <div class="mx-auto max-w-7xl flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        
+        <!-- SECTION 3: Search Bar -->
+        <div class="relative flex-1 max-w-md">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-white/40">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </span>
+          <input
+            type="text"
+            id="template-search"
+            placeholder="Search by title, category, or tags..."
+            class="w-full rounded-full border border-white/15 bg-white/5 py-3 pl-11 pr-4 text-sm text-white placeholder-white/40 transition-colors focus:border-purple-500 focus:bg-white/10 focus:outline-none"
+            aria-label="Search templates"
+          />
+        </div>
+
+        <!-- SECTION 4 & 5: Category Chips & Sorting Dropdown -->
+        <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+          <!-- Category Chips Slider -->
+          <nav class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 scrollbar-none" aria-label="Template Categories">
+            {categories.map((category) => (
+              <button
+                class={`category-btn whitespace-nowrap rounded-full border px-4 py-2 text-xs font-semibold transition-all duration-200 ${
+                  category === "All"
+                    ? "border-purple-500 bg-purple-600 text-white shadow-lg shadow-purple-600/30"
+                    : "border-white/10 bg-white/5 text-white/70 hover:border-white/30 hover:bg-white/10 hover:text-white"
+                }`}
+                data-category={category}
+              >
+                {category}
+              </button>
+            ))}
+          </nav>
+
+          <!-- SECTION 5: Sorting Dropdown -->
+          <div class="relative shrink-0">
+            <select
+              id="template-sort"
+              class="w-full sm:w-auto rounded-full border border-white/15 bg-white/5 px-4 py-2.5 text-xs font-semibold text-white/80 transition-colors focus:border-purple-500 focus:bg-white/15 focus:outline-none cursor-pointer"
+              aria-label="Sort templates"
+            >
+              <option value="newest" class="bg-black text-white">Newest First</option>
+              <option value="az" class="bg-black text-white">Title (A-Z)</option>
+              <option value="category" class="bg-black text-white">Category</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SECTION 6: Template Grid -->
+    <section id="templates-grid" class="mx-auto mt-10 max-w-7xl px-5" aria-label="Templates Listing">
+      <div id="templates-container" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {templates.map((template, index) => (
+          <div
+            class="template-item group"
+            data-title={template.title.toLowerCase()}
+            data-category={template.category}
+            data-tags={template.tags ? template.tags.join(" ").toLowerCase() : ""}
+            data-index={index}
+          >
+            <TemplateCard template={template} />
+          </div>
+        ))}
+      </div>
+
+      <!-- SECTION 7: Empty State -->
+      <div id="empty-state" class="hidden py-24 text-center">
+        <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white/5 border border-white/10 text-white/40">
+          <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </div>
+        <h3 class="mt-4 text-xl font-bold text-white">No templates found</h3>
+        <p class="mt-2 text-sm text-white/60">We couldn't find any templates matching your search criteria.</p>
+        <button
+          id="clear-filters-btn"
+          class="mt-6 inline-flex items-center justify-center rounded-full bg-white/10 px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/40"
+        >
+          Clear Filters
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION 8: Explore More CTA -->
+    <section class="mx-auto mt-24 max-w-7xl px-5">
+      <div class="relative overflow-hidden rounded-3xl border border-purple-500/20 bg-gradient-to-r from-purple-900/40 via-purple-900/20 to-black p-8 sm:p-14 text-center backdrop-blur-xl">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-500/10 via-transparent to-transparent" aria-hidden="true"></div>
+        <h2 class="relative z-10 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+          Looking for Something Specific?
+        </h2>
+        <p class="relative z-10 mx-auto mt-3 max-w-xl text-base text-white/70">
+          New viral VN templates are added daily. Request a template or explore our curated editing categories.
+        </p>
+        <div class="relative z-10 mt-8 flex flex-wrap justify-center gap-4">
+          <a
+            href="/templates"
+            class="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-center text-base font-semibold text-black shadow-lg transition-all duration-200 hover:bg-white/90 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
+          >
+            Browse All Categories
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Vanilla JS Filtering, Searching, and Sorting Engine -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const searchInput = document.getElementById("template-search") as HTMLInputElement;
+      const categoryButtons = document.querySelectorAll(".category-btn");
+      const sortSelect = document.getElementById("template-sort") as HTMLSelectElement;
+      const container = document.getElementById("templates-container") as HTMLElement;
+      const items = Array.from(container.querySelectorAll(".template-item")) as HTMLElement[];
+      const emptyState = document.getElementById("empty-state") as HTMLElement;
+      const clearBtn = document.getElementById("clear-filters-btn") as HTMLButtonElement;
+
+      let currentCategory = "All";
+      let searchQuery = "";
+      let currentSort = "newest";
+
+      function filterAndSortTemplates() {
+        let visibleCount = 0;
+
+        items.forEach((item) => {
+          const title = item.getAttribute("data-title") || "";
+          const category = item.getAttribute("data-category") || "";
+          const tags = item.getAttribute("data-tags") || "";
+
+          const matchesCategory = currentCategory === "All" || category === currentCategory;
+          const matchesSearch =
+            title.includes(searchQuery) ||
+            category.toLowerCase().includes(searchQuery) ||
+            tags.includes(searchQuery);
+
+          if (matchesCategory && matchesSearch) {
+            item.style.display = "";
+            visibleCount++;
+          } else {
+            item.style.display = "none";
+          }
+        });
+
+        // Sorting logic
+        const visibleItems = items.filter((item) => item.style.display !== "none");
+
+        visibleItems.sort((a, b) => {
+          if (currentSort === "az") {
+            const titleA = a.getAttribute("data-title") || "";
+            const titleB = b.getAttribute("data-title") || "";
+            return titleA.localeCompare(titleB);
+          } else if (currentSort === "category") {
+            const catA = a.getAttribute("data-category") || "";
+            const catB = b.getAttribute("data-category") || "";
+            return catA.localeCompare(catB);
+          } else {
+            // Default 'newest' based on initial DOM order index
+            const indexA = parseInt(a.getAttribute("data-index") || "0", 10);
+            const indexB = parseInt(b.getAttribute("data-index") || "0", 10);
+            return indexA - indexB;
+          }
+        });
+
+        // Reorder DOM elements efficiently
+        visibleItems.forEach((item) => container.appendChild(item));
+
+        // Handle Empty State
+        if (visibleCount === 0) {
+          emptyState.classList.remove("hidden");
+          container.classList.add("hidden");
+        } else {
+          emptyState.classList.add("hidden");
+          container.classList.remove("hidden");
+        }
+      }
+
+      // Search input event
+      searchInput.addEventListener("input", (e) => {
+        searchQuery = (e.target as HTMLInputElement).value.trim().toLowerCase();
+        filterAndSortTemplates();
+      });
+
+      // Category buttons event delegation
+      categoryButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          categoryButtons.forEach((b) => {
+            b.className =
+              "category-btn whitespace-nowrap rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-white/70 transition-all duration-200 hover:border-white/30 hover:bg-white/10 hover:text-white";
+          });
+          btn.className =
+            "category-btn whitespace-nowrap rounded-full border border-purple-500 bg-purple-600 px-4 py-2 text-xs font-semibold text-white shadow-lg shadow-purple-600/30 transition-all duration-200";
+
+          currentCategory = btn.getAttribute("data-category") || "All";
+          filterAndSortTemplates();
+        });
+      });
+
+      // Sort change event
+      sortSelect.addEventListener("change", (e) => {
+        currentSort = (e.target as HTMLSelectElement).value;
+        filterAndSortTemplates();
+      });
+
+      // Clear filters button event
+      clearBtn.addEventListener("click", () => {
+        searchInput.value = "";
+        searchQuery = "";
+        currentCategory = "All";
+        currentSort = "newest";
+        sortSelect.value = "newest";
+
+        categoryButtons.forEach((b, idx) => {
+          if (idx === 0) {
+            b.className =
+              "category-btn whitespace-nowrap rounded-full border border-purple-500 bg-purple-600 px-4 py-2 text-xs font-semibold text-white shadow-lg shadow-purple-600/30 transition-all duration-200";
+          } else {
+            b.className =
+              "category-btn whitespace-nowrap rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-white/70 transition-all duration-200 hover:border-white/30 hover:bg-white/10 hover:text-white";
+          }
+        });
+
+        filterAndSortTemplates();
+      });
+    });
+  </script>
+</MainLayout>

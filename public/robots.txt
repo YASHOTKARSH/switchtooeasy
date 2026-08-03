@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://switchtooeasy.netlify.app/sitemap-index.xml

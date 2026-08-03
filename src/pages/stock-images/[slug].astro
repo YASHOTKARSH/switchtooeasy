@@ -1,0 +1,153 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import SeoSchemas from "../../components/SeoSchemas.astro";
+import { stockImages } from "../../data/stockImages";
+
+export function getStaticPaths() {
+  return stockImages.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+
+const pageUrl = `https://switchtooeasy.netlify.app/stock-images/${item.slug}`;
+const imageUrl = `https://switchtooeasy.netlify.app${item.image}`;
+
+const relatedImages = stockImages
+  .filter((image) => image.slug !== item.slug)
+  .slice(0, 4);
+
+const schemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ImageObject",
+    name: item.title,
+    description: item.description,
+    contentUrl: imageUrl,
+    url: pageUrl,
+    creator: {
+      "@type": "Organization",
+      name: "SwitchTooEasy",
+    },
+    copyrightHolder: {
+      "@type": "Organization",
+      name: "SwitchTooEasy",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://switchtooeasy.netlify.app/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Stock Images",
+        item: "https://switchtooeasy.netlify.app/stock-images",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: item.title,
+        item: pageUrl,
+      },
+    ],
+  },
+];
+---
+
+<MainLayout
+  title={`${item.title} - Download Stock Image | SwitchTooEasy`}
+  description={item.shortDescription}
+  canonical={pageUrl}
+  image={imageUrl}
+  type="article"
+>
+  <SeoSchemas schemas={schemas} />
+
+  <section class="px-4 py-14 md:px-5 md:py-20">
+    <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.2fr_.8fr]">
+      <div class="flex justify-center overflow-hidden rounded-[2rem] border border-white/10 bg-black">
+        <img
+          src={item.image}
+          alt={item.title}
+          class="max-h-[78vh] w-full object-contain"
+        />
+      </div>
+
+      <aside class="lg:sticky lg:top-28 lg:self-start">
+        <p class="inline-block rounded-full bg-purple-500/20 px-4 py-2 text-sm font-semibold text-purple-200">
+          {item.category}
+        </p>
+
+        <h1 class="mt-5 text-4xl font-black leading-tight md:text-5xl">
+          {item.title}
+        </h1>
+
+        <p class="mt-5 text-lg leading-8 text-white/70">
+          {item.description}
+        </p>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          {item.tags.map((tag) => (
+            <span class="rounded-full border border-white/10 px-4 py-2 text-sm text-white/70">
+              #{tag}
+            </span>
+          ))}
+        </div>
+
+        <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+          <a
+            href={item.downloadUrl}
+            download
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-full bg-purple-500 px-8 py-4 text-center font-bold text-white hover:bg-purple-400"
+          >
+            Download Image
+          </a>
+
+          <a
+            href="/stock-images"
+            class="rounded-full border border-white/15 px-8 py-4 text-center font-bold hover:bg-white/10"
+          >
+            Back
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="px-4 pb-20 md:px-5">
+    <div class="mx-auto max-w-7xl">
+      <h2 class="text-3xl font-black">Related Stock Images</h2>
+
+      <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {relatedImages.map((image) => (
+          <a
+            href={`/stock-images/${image.slug}`}
+            class="overflow-hidden rounded-3xl border border-white/10 bg-white/5 hover:bg-white/10"
+          >
+            <img
+              src={image.image}
+              alt={image.title}
+              loading="lazy"
+              class="aspect-video w-full object-cover"
+            />
+
+            <div class="p-5">
+              <h3 class="font-bold">{image.title}</h3>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</MainLayout>

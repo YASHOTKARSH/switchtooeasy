@@ -1,0 +1,35 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import StockVideoCard from "../../components/StockVideoCard.astro";
+import { stockVideos } from "../../data/stockVideos";
+
+const latestVideos = [...stockVideos].reverse();
+---
+
+<MainLayout
+  title="Free Stock Videos for Reels & Content Creators"
+  description="Browse cinematic stock videos for reels, edits, YouTube shorts and content creation."
+  canonical="https://switchtooeasy.netlify.app/stock-videos"
+>
+  <section class="px-4 py-14 md:px-5 md:py-20">
+    <div class="mx-auto max-w-7xl">
+      <p class="text-sm font-bold uppercase tracking-widest text-purple-300">
+        Stock Videos
+      </p>
+
+      <h1 class="mt-4 text-4xl font-black md:text-6xl">
+        Cinematic stock videos for creators.
+      </h1>
+
+      <p class="mt-5 max-w-2xl text-white/60">
+        Browse premium-looking stock footage for reels, edits, YouTube shorts and creative projects.
+      </p>
+
+      <div class="mt-12 columns-1 gap-5 sm:columns-2 lg:columns-3 xl:columns-4">
+        {latestVideos.map((item) => (
+          <StockVideoCard item={item} />
+        ))}
+      </div>
+    </div>
+  </section>
+</MainLayout>

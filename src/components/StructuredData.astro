@@ -1,0 +1,50 @@
+---
+const {
+  type = "WebSite",
+  title,
+  description,
+  url,
+  image,
+} = Astro.props;
+
+let schema = {};
+
+if (type === "WebSite") {
+  schema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: title,
+    description,
+    url,
+    image,
+    publisher: {
+      "@type": "Organization",
+      name: "SwitchTooEasy",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://switchtooeasy.netlify.app/logo.png",
+      },
+    },
+  };
+}
+
+if (type === "CreativeWork") {
+  schema = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    headline: title,
+    description,
+    url,
+    image,
+    author: {
+      "@type": "Organization",
+      name: "SwitchTooEasy",
+    },
+  };
+}
+---
+
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(schema)}
+></script>

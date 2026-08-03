@@ -1,0 +1,26 @@
+---
+const { promptText } = Astro.props;
+---
+
+<button
+  id="copyPromptBtn"
+  class="rounded-full bg-pink-500 px-8 py-4 text-center font-bold text-white hover:bg-pink-400"
+>
+  Copy Prompt
+</button>
+
+<script define:vars={{ promptText }}>
+  const button = document.getElementById("copyPromptBtn");
+
+  button?.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(promptText);
+      button.textContent = "Copied!";
+      setTimeout(() => {
+        button.textContent = "Copy Prompt";
+      }, 1600);
+    } catch (error) {
+      button.textContent = "Copy Failed";
+    }
+  });
+</script>
