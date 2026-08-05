@@ -1,4 +1,5 @@
 ---
+// src/components/Header.astro
 ---
 <header
   class="sticky top-0 z-50 border-b border-white/10 bg-black/80 backdrop-blur-xl"
@@ -6,6 +7,7 @@
   <nav
     class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-5 md:py-4"
   >
+    <!-- Logo -->
     <a href="/" class="flex items-center" aria-label="SwitchTooEasy Home">
       <img
         src="/logo.png"
@@ -14,7 +16,7 @@
       />
     </a>
 
-    <!-- Desktop Nav Links -->
+    <!-- Desktop Nav Links (Hidden on Mobile) -->
     <div
       class="hidden items-center gap-6 text-sm font-semibold text-white/80 md:flex"
     >
@@ -27,6 +29,7 @@
       <a href="/contact" class="transition hover:text-purple-300">Contact</a>
     </div>
 
+    <!-- Desktop Explore Button (Hidden on Mobile) -->
     <a
       href="/templates"
       class="hidden rounded-full bg-purple-500 px-6 py-3 text-sm font-bold text-white transition hover:bg-purple-400 md:inline-block"
@@ -38,75 +41,63 @@
     <button
       id="menuBtn"
       type="button"
-      class="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white md:hidden"
+      class="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white md:hidden transition-transform active:scale-95"
       aria-label="Open menu"
     >
-      <span class="text-2xl leading-none">☰</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>
+      </svg>
     </button>
   </nav>
 
-  <!-- Mobile Dropdown Menu Drawer -->
+  <!-- Mobile Dropdown Menu Drawer (Glassmorphism UI) -->
   <div
     id="mobileMenu"
-    class="hidden border-t border-white/10 bg-black/95 px-4 pb-6 pt-3 backdrop-blur-2xl md:hidden"
+    class="hidden absolute top-full left-0 w-full border-b border-white/10 bg-black/95 px-4 pb-6 pt-3 backdrop-blur-2xl md:hidden shadow-2xl transition-all duration-300 origin-top"
   >
     <div class="grid gap-2">
+      <!-- Highlighted App Download -->
       <a
         href="/download"
-        class="rounded-2xl px-4 py-3 font-semibold text-purple-300 hover:bg-white/10 flex items-center justify-between"
+        class="rounded-2xl px-4 py-3 font-semibold text-purple-300 bg-purple-900/20 border border-purple-500/30 hover:bg-purple-900/40 flex items-center justify-between mb-2"
       >
         <span>📱 Download App</span>
-        <span class="text-xs bg-purple-500/25 px-2 py-0.5 rounded-full">New</span>
+        <span class="text-xs bg-purple-500 px-2 py-0.5 rounded-full text-white">New</span>
       </a>
-      <a
-        href="/templates"
-        class="rounded-2xl px-4 py-3 font-semibold text-white/80 hover:bg-white/10"
-      >
-        Templates
-      </a>
-      <a
-        href="/prompts"
-        class="rounded-2xl px-4 py-3 font-semibold text-white/80 hover:bg-white/10"
-      >
-        Prompts
-      </a>
+      
+      <!-- Secondary Links (Since main ones are in Bottom Nav now) -->
       <a
         href="/stock-videos"
-        class="rounded-2xl px-4 py-3 font-semibold text-white/80 hover:bg-white/10"
+        class="rounded-2xl px-4 py-3 font-medium text-white/80 hover:bg-white/10 transition-colors"
       >
         Stock Videos
       </a>
       <a
         href="/stock-images"
-        class="rounded-2xl px-4 py-3 font-semibold text-white/80 hover:bg-white/10"
+        class="rounded-2xl px-4 py-3 font-medium text-white/80 hover:bg-white/10 transition-colors"
       >
         Stock Images
       </a>
       <a
         href="/blog"
-        class="rounded-2xl px-4 py-3 font-semibold text-white/80 hover:bg-white/10"
+        class="rounded-2xl px-4 py-3 font-medium text-white/80 hover:bg-white/10 transition-colors"
       >
         Blog
       </a>
       <a
         href="/about"
-        class="rounded-2xl px-4 py-3 font-semibold text-white/80 hover:bg-white/10"
+        class="rounded-2xl px-4 py-3 font-medium text-white/80 hover:bg-white/10 transition-colors"
       >
         About
       </a>
       <a
         href="/contact"
-        class="rounded-2xl px-4 py-3 font-semibold text-white/80 hover:bg-white/10"
+        class="rounded-2xl px-4 py-3 font-medium text-white/80 hover:bg-white/10 transition-colors"
       >
         Contact
       </a>
 
-      <a
-        href="/stock-videos"
-        class="mt-2 rounded-full bg-purple-500 px-5 py-3 text-center font-bold text-white shadow-lg shadow-purple-500/30"
-      >
-        Explore Assets
-      </a>
+      <!-- Bottom Nav wale links yahan se hata diye hain kyunki wo screen ke neeche hamesha visible rahenge -->
     </div>
   </div>
 
@@ -115,36 +106,18 @@
     const mobileMenu = document.getElementById("mobileMenu");
 
     menuBtn?.addEventListener("click", () => {
+      // Toggle visibility with basic classes
       mobileMenu?.classList.toggle("hidden");
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (event) => {
+      const isClickInsideMenu = mobileMenu?.contains(event.target as Node);
+      const isClickOnBtn = menuBtn?.contains(event.target as Node);
+      
+      if (!isClickInsideMenu && !isClickOnBtn && !mobileMenu?.classList.contains('hidden')) {
+        mobileMenu?.classList.add('hidden');
+      }
     });
   </script>
 </header>
-
-<!-- MOBILE APP BOTTOM DOCK NAVIGATION (App-like Experience) -->
-<nav class="fixed inset-x-0 bottom-0 z-40 bg-black/90 backdrop-blur-xl border-t border-white/10 px-4 py-2 md:hidden shadow-2xl" aria-label="Mobile Bottom App Bar">
-  <div class="mx-auto flex max-w-md items-center justify-around">
-    <!-- Home -->
-    <a href="/" class="flex flex-col items-center justify-center py-1 px-3 text-white/60 hover:text-purple-400 transition-colors">
-      <svg class="h-5 w-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-      <span class="text-[10px] font-medium">Home</span>
-    </a>
-
-    <!-- Templates -->
-    <a href="/templates" class="flex flex-col items-center justify-center py-1 px-3 text-white/60 hover:text-purple-400 transition-colors">
-      <svg class="h-5 w-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-      <span class="text-[10px] font-medium">Templates</span>
-    </a>
-
-    <!-- Prompts -->
-    <a href="/prompts" class="flex flex-col items-center justify-center py-1 px-3 text-white/60 hover:text-purple-400 transition-colors">
-      <svg class="h-5 w-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-      <span class="text-[10px] font-medium">Prompts</span>
-    </a>
-
-    <!-- Download App Shortcut -->
-    <a href="/download" class="flex flex-col items-center justify-center py-1 px-3 text-purple-400 hover:text-purple-300 transition-colors">
-      <svg class="h-5 w-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-      <span class="text-[10px] font-bold">Install</span>
-    </a>
-  </div>
-</nav>

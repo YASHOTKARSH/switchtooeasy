@@ -1,16 +1,16 @@
-const CACHE_NAME = 'switchtooeasy-cache-v1';
+// Version update karna zaroori hai! Jab bhi naya code push karo, ise 'v2', 'v3' kar dena.
+const CACHE_NAME = 'switchtooeasy-cache-v2';
 
-// Yahan wo files dalein jo aap chahte hain offline available rahein
 const urlsToCache = [
   '/',
   '/manifest.json',
   '/logo.png',
   '/favicon.png',
-  // Agar aapka koi custom CSS/JS static folder mein hai toh wo bhi yahan daal sakte hain
 ];
 
 // Install Event: Files ko cache (save) karna
 self.addEventListener('install', (event) => {
+  self.skipWaiting(); // IMPORTANT: Naye Service Worker ko turant activate karne ke liye
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       console.log('Opened cache');
@@ -19,36 +19,41 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// Fetch Event: Agar internet hai toh live data do, nahi toh Cache se data do
+// Activate Event: Purana cache delete karna (Ye tumhare code mein missing tha)
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cache) => {
+          if (cache !== CACHE_NAME) {
+            console.log('Purana cache delete ho gaya:', cache);
+            return caches.delete(cache);
+          }
+        })
+      );
+    }).then(() => self.clients.claim()) // Naye version ka control force apply karein
+  );
+});
+
+// Fetch Event: Network First Strategy (Hamesha updates dikhayega)
 self.addEventListener('fetch', (event) => {
   // Sirf GET requests ko intercept karein
   if (event.request.method !== 'GET') return;
 
   event.respondWith(
-    caches.match(event.request).then((response) => {
-      // Agar cache mein file mil gayi toh wo return karo
-      if (response) {
-        return response;
-      }
-      
-      // Agar cache mein nahi hai toh network se fetch karo aur cache mein save karte jao
-      return fetch(event.request).then((networkResponse) => {
-        // Response valid na ho toh wapas bhej do
-        if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
-          return networkResponse;
-        }
-
-        // Future offline use ke liye cache mein daal do
+    // 1. Pehle INTERNET se naya data laane ki koshish karo
+    fetch(event.request).then((networkResponse) => {
+      // Agar response valid hai, toh usko future ke liye cache mein save/update kar lo
+      if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
         const responseToCache = networkResponse.clone();
         caches.open(CACHE_NAME).then((cache) => {
           cache.put(event.request, responseToCache);
         });
-
-        return networkResponse;
-      }).catch(() => {
-        // Agar internet nahi hai aur cache bhi nahi hai
-        // Aap yahan ek default offline page dikha sakte hain
-      });
+      }
+      return networkResponse;
+    }).catch(() => {
+      // 2. Agar internet OFF hai ya request fail ho jaye, tabhi CACHE se data do
+      return caches.match(event.request);
     })
   );
 });

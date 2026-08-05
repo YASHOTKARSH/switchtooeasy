@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "app.netlify.switchtooeasy.twa",
+        "sha256_cert_fingerprints": ["CD:1E:0A:B6:B3:3D:98:79:E4:75:5F:58:A2:9E:CF:15:EA:1F:3F:F9:93:B1:F6:8F:65:75:37:D8:CA:47:BE:91"]
+      }
+    }]
